@@ -171,6 +171,33 @@ func (s Set) Add(e uint64) Set {
 	return comp.close()
 }
 
+func (a Set) AddRange(begin, end uint64) Set {
+	comp, decomp_a, d_b := newCompressor(), newDecompressor(a), begin
+	d_a, status_a := decomp_a.decompress()
+	for status_a && d_b <= end {
+		if d_a == d_b {
+			comp.compress(d_a)
+			d_a, status_a = decomp_a.decompress()
+			d_b++
+		} else if d_a < d_b {
+			comp.compress(d_a)
+			d_a, status_a = decomp_a.decompress()
+		} else {
+			comp.compress(d_b)
+			d_b++
+		}
+	}
+	for status_a {
+		comp.compress(d_a)
+		d_a, status_a = decomp_a.decompress()
+	}
+	for d_b <= end {
+		comp.compress(d_b)
+		d_b++
+	}
+	return comp.close()
+}
+
 func (s Set) Has(e uint64) bool {
 	decomp := newDecompressor(s)
 	for item, status := decomp.decompress(); status; item, status = decomp.decompress() {

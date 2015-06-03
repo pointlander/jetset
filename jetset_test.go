@@ -78,6 +78,18 @@ func TestAdd(t *testing.T) {
 	}
 }
 
+func TestAddRange(t *testing.T) {
+	items, set := []uint64{1, 3, 4, 5, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 20, 21, 22, 23, 24, 25, 26}, makeTestSetA().AddRange(21, 26)
+	decomp := newDecompressor(set)
+	for _, item := range items {
+		d, status := decomp.decompress()
+		if !status || d != item {
+			t.Errorf("add range error")
+			break
+		}
+	}
+}
+
 func TestHas(t *testing.T) {
 	set := makeTestSetA()
 	if !set.Has(11) {
