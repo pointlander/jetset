@@ -1,0 +1,4 @@
+github.com/pointlander/compress v1.1.0 h1:5fUcQV2qEHvk0OpILH6eltwluN5VnwiYrkc1wjGUHnU=
+github.com/pointlander/compress v1.1.0/go.mod h1:q5NXNGzqj5uPnVuhGkZfmgHqNUhf15VLi6L9kW0VEc0=
+github.com/pointlander/compress v1.1.1-0.20190518213731-ff44bd196cc3 h1:hUmXhbljNFtrH5hzV9kiRoddZ5nfPTq3K0Sb2hYYiqE=
+github.com/pointlander/compress v1.1.1-0.20190518213731-ff44bd196cc3/go.mod h1:q5NXNGzqj5uPnVuhGkZfmgHqNUhf15VLi6L9kW0VEc0=
